@@ -1,0 +1,767 @@
+import { useEffect, useState } from 'react'
+import reactLogo from './assets/react.svg'
+import viteLogo from '/vite.svg'
+import './App.css'
+import Navbar from './Navbar'
+import Itemspage from './Itemspage'
+import ProtectedRout from './ProtectedRout'
+import PlaceOrder from './PlaceOrder'
+import Images from './Images'
+import Footer from './Footer'
+import ItemDetail from './ItemDetail'
+import 'react-toastify/dist/ReactToastify.css';
+import {ToastContainer} from 'react-toastify'
+import LoginForm from './LoginForm'
+import {Routes ,Route} from 'react-router-dom'
+import Chat from './Chat'
+import HeroText from './HeroText'
+import FAQ from './FAQ'
+import SignupForm from './SignupForm'
+
+function App() {
+
+  const [text, settext]=useState('')
+  const [Catagory,setCatagory]=useState('')
+  const [Love ,setLove] = useState(false)
+  const [selectedItem, setSelectedItem] = useState(null);
+  
+  const men = [
+            {
+              
+              category: "Joggers",
+              gender:'Men',
+              image: "https://images.pexels.com/photos/1407354/pexels-photo-1407354.jpeg?auto=compress&cs=tinysrgb&w=600",
+              pastRate: 7500,
+              newRate: 6200,
+              description: "Comfortable black joggers for daily wear.",
+              color: "Black",
+            },
+            {
+              
+              category: "Joggers",
+              gender:'Men',
+              image: "https://images.pexels.com/photos/12725052/pexels-photo-12725052.jpeg?auto=compress&cs=tinysrgb&w=600",
+              pastRate: 5600,
+              newRate: 4300,
+              description: "Grey joggers with a sleek design.",
+              color: "Red",
+            },
+            {
+              category: "Joggers",
+              gender:'Men',
+              image: "https://images.pexels.com/photos/11324548/pexels-photo-11324548.jpeg?auto=compress&cs=tinysrgb&w=1260",
+              pastRate: 4000,
+              newRate: 3900,
+              description: "Additional jogger image.",
+              color: 'White',
+            },
+            {
+              category: "Joggers",
+              gender:'Men',
+              image: "https://images.pexels.com/photos/5526492/pexels-photo-5526492.jpeg?auto=compress&cs=tinysrgb&w=600",
+              pastRate: 17000,
+              newRate: 16000,
+              description: "Additional jogger image.",
+              color: 'Gray'
+            },
+            {
+              category: "Joggers",
+              gender:'Men',
+              image: "https://images.pexels.com/photos/1464625/pexels-photo-1464625.jpeg?auto=compress&cs=tinysrgb&w=600",
+              pastRate: 16000,
+              newRate: 12000,
+              description: "Additional jogger image.",
+              color: 'Gray',
+            },
+            {
+              category: "Joggers",
+              gender:'Men',
+              image: "https://images.pexels.com/photos/10726876/pexels-photo-10726876.jpeg?auto=compress&cs=tinysrgb&w=600",
+              pastRate: 19000,
+              newRate: 18000,
+              description: "Additional jogger image.",
+              color: 'White',
+            },
+            {
+              category: "Joggers",
+              gender:'Men',
+              image: "https://images.pexels.com/photos/1464624/pexels-photo-1464624.jpeg?auto=compress&cs=tinysrgb&w=600",
+              pastRate: 17500,
+              newRate: 13400,
+              description: "Additional jogger image.",
+              color: 'Black',
+            },
+            {
+              category: "Joggers",
+              gender:'Men',
+              image: "https://images.pexels.com/photos/29342151/pexels-photo-29342151/free-photo-of-modern-sports-shoes-on-wooden-background.jpeg?auto=compress&cs=tinysrgb&w=600",
+              pastRate: 10400,
+              newRate: 10000,
+              description: "Additional jogger image.",
+              color: 'Black',
+            },
+            {
+              category: "Joggers",
+              gender:'Men',
+              image: "https://images.pexels.com/photos/1456733/pexels-photo-1456733.jpeg?auto=compress&cs=tinysrgb&w=600",
+              pastRate: 13000,
+              newRate: 12000,
+              description: "Additional jogger image.",
+              color: 'White',
+            },
+            {
+              category: "Joggers",
+              gender:'Men',
+              image: "https://images.pexels.com/photos/27503497/pexels-photo-27503497/free-photo-of-zapatilla-negras.png?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+              pastRate: 12000,
+              newRate: 9000,
+              description: "Additional jogger image.",
+              color: 'Black',
+            },
+            {
+              category: "Joggers",
+              gender:'Men',
+              image: "https://images.pexels.com/photos/5413291/pexels-photo-5413291.jpeg?auto=compress&cs=tinysrgb&w=600",
+              pastRate: 18000,
+              newRate: 13000,
+              description: "Additional jogger image.",
+              color: 'Green',
+            },
+            {
+              category: "Joggers",
+              gender:'Men',
+              image: "https://images.pexels.com/photos/10113084/pexels-photo-10113084.jpeg?auto=compress&cs=tinysrgb&w=600",
+              pastRate: 4000,
+              newRate: 3900,
+              description: "Additional jogger image.",
+              color: 'Black',
+            },
+            {
+              category: "Joggers",
+              gender:'Men',
+              image: "https://images.pexels.com/photos/8268988/pexels-photo-8268988.jpeg?auto=compress&cs=tinysrgb&w=600",
+              pastRate: 7000,
+              newRate: 6000,
+              description: "Additional jogger image.",
+              color: 'Black',
+            },
+            {
+              category: "Joggers",
+              gender:'Men',
+              image: "https://images.pexels.com/photos/4029473/pexels-photo-4029473.jpeg?auto=compress&cs=tinysrgb&w=600",
+              pastRate: 5000,
+              newRate: 4500,
+              description: "Additional jogger image.",
+              color: "Black",
+            },
+            {
+              category: "Joggers",
+              gender:'Men',
+              image: "https://images.pexels.com/photos/7501135/pexels-photo-7501135.jpeg?auto=compress&cs=tinysrgb&w=600",
+              pastRate: 6000,
+              newRate: 5400,
+              description: "Additional jogger image.",
+              color: 'Pink',
+            },
+            {
+              category: "Joggers",
+              gender:'Men',
+              image: "https://images.pexels.com/photos/17079412/pexels-photo-17079412/free-photo-of-new-black-and-white-sneakers.jpeg?auto=compress&cs=tinysrgb&w=600",
+              pastRate: 12000,
+              newRate: 10000,
+              description: "Additional jogger image.",
+              color: 'Brown',
+            },
+            {
+              category: "Joggers",
+              gender:'Men',
+              image: "https://images.pexels.com/photos/10657978/pexels-photo-10657978.jpeg?auto=compress&cs=tinysrgb&w=600",
+              pastRate: 9000,
+              newRate: 8000,
+              description: "Additional jogger image.",
+              color: 'White',
+            },
+            {
+              category: "Joggers",
+              gender:'Men',
+              image: "https://images.pexels.com/photos/12607452/pexels-photo-12607452.jpeg?auto=compress&cs=tinysrgb&w=600",
+              pastRate: 12000,
+              newRate: 11800,
+              description: "Additional jogger image.",
+              color: 'White',
+            },
+            {
+              category: "Joggers",
+              gender:'Men',
+              image: "https://images.pexels.com/photos/11324548/pexels-photo-11324548.jpeg?auto=compress&cs=tinysrgb&w=600",
+              pastRate: 21000,
+              newRate:18000,
+              description: "Additional jogger image.",
+              color: "White",
+            },
+            {
+              category: "Joggers",
+              gender:'Men',
+              image: "https://images.pexels.com/photos/11324516/pexels-photo-11324516.jpeg?auto=compress&cs=tinysrgb&w=600",
+              pastRate: 13000,
+              newRate: 12500,
+              description: "Additional jogger image.",
+              color: 'White',
+            },
+            {
+              category: "Joggers",
+              gender:'Men',
+              image: "https://images.pexels.com/photos/13236696/pexels-photo-13236696.jpeg?auto=compress&cs=tinysrgb&w=600",
+              pastRate: 15000,
+              newRate: 14000,
+              description: "Additional jogger image.",
+              color: 'Blue',
+            },
+            {
+              category: "Joggers",
+              gender:'Men',
+              image: "https://images.pexels.com/photos/8268988/pexels-photo-8268988.jpeg?auto=compress&cs=tinysrgb&w=600",
+              pastRate: 8000,
+              newRate: 7000,
+              description: "Additional jogger image.",
+              color: 'White',
+            },
+            {
+              category: "Joggers",
+              gender:'Men',
+              image: "https://images.pexels.com/photos/12879626/pexels-photo-12879626.jpeg?auto=compress&cs=tinysrgb&w=600",
+              pastRate: 15000,
+              newRate: 12000,
+              description: "Additional jogger image.",
+              color: 'Black',
+             },
+             {
+              category: "Joggers",
+              gender:'Men',
+              image: "https://images.pexels.com/photos/17931134/pexels-photo-17931134/free-photo-of-close-up-of-a-pair-of-running-shoes.jpeg?auto=compress&cs=tinysrgb&w=600",
+              pastRate: 20000,
+              newRate: 16000,
+              description: "Additional jogger image.",
+              color: 'Blue',
+             },
+          {
+              category: "Joggers",
+              gender:'Men',
+              image: "https://images.pexels.com/photos/7501135/pexels-photo-7501135.jpeg?auto=compress&cs=tinysrgb&w=600",
+              pastRate: 18000,
+              newRate: 15000,
+              description: "Additional jogger image.",
+              color: 'Black',
+             },
+             
+              // Slippers
+              {
+                category: "Slippers",
+                gender:'Men',
+                image: "https://images.pexels.com/photos/19837530/pexels-photo-19837530/free-photo-of-flip-flops-on-white-background.jpeg?auto=compress&cs=tinysrgb&w=600",
+                
+                pastRate:2000,
+                newRate: 1500,
+                description: "Comfortable white flip-flops, perfect for casual wear.",
+                color: "Green",
+              },
+              {
+                category: "Slippers",
+                gender:'Men',
+                image: "https://images.pexels.com/photos/13698233/pexels-photo-13698233.jpeg?auto=compress&cs=tinysrgb&w=600",
+                pastRate: 2000,
+                newRate: 1500,
+                description: "Soft and cozy pink slippers for indoor use.",
+                color: "Brown",
+              },
+              {
+                category: "Slippers",
+                gender:'Men',
+                image: "https://images.pexels.com/photos/14934603/pexels-photo-14934603.jpeg?auto=compress&cs=tinysrgb&w=600",
+                pastRate: 1800,
+                newRate: 1500,
+                description: "Stylish striped flip-flops for summer outings.",
+                color: "Black",
+              },
+              {
+                category: "Slippers",
+                gender:'Men',
+                image: "https://images.pexels.com/photos/12151315/pexels-photo-12151315.jpeg?auto=compress&cs=tinysrgb&w=600",
+                pastRate: 1200,
+                newRate: 1000,
+                description: "Durable black slippers with a textured sole.",
+                color: "White",
+              },
+              {
+                category: "Slippers",
+                gender:'Men',
+                image: "https://images.pexels.com/photos/14934602/pexels-photo-14934602.jpeg?auto=compress&cs=tinysrgb&w=600",
+                pastRate: 2500,
+                newRate: 2000,
+                description: "Elegant slippers with a soft cushion design.",
+                color: "Black",
+              },
+              {
+                category: "Slippers",
+                gender:'Men',
+                image: "https://images.pexels.com/photos/14934601/pexels-photo-14934601.jpeg?auto=compress&cs=tinysrgb&w=600",
+                pastRate: 1700,
+                newRate: 1500,
+                description: "Classic blue flip-flops ideal for beach trips.",
+                color: "Blue",
+              },
+              {
+                category: "Slippers",
+                gender:'Men',
+                image: "https://images.pexels.com/photos/12208951/pexels-photo-12208951.jpeg?auto=compress&cs=tinysrgb&w=600",
+                newRate: 2200,
+                pastRate: 2000,
+                description: "Comfortable brown slippers with a rustic look.",
+                color: "Brown",
+              },
+              {
+                category: "Slippers",
+                gender:'Men',
+                image: "https://images.pexels.com/photos/14847970/pexels-photo-14847970.jpeg?auto=compress&cs=tinysrgb&w=600",
+                pastRate: 1900,
+                newRate: 1500,
+                description: "Vibrant yellow flip-flops to brighten up your style.",
+                color: "Green",
+              },
+              {
+                category: "Slippers",
+                gender:'Men',
+                image: "https://images.pexels.com/photos/28607536/pexels-photo-28607536/free-photo-of-stylish-gray-flip-flops-on-colorful-background.jpeg?auto=compress&cs=tinysrgb&w=600",
+                pastRate: 2100,
+                newRate: 1800,
+                description: "Gray flip-flops with a modern and minimalist design.",
+                color: "Gray",
+              },
+              {
+                category: "Slippers",
+                gender:'Men',
+                image: "https://images.pexels.com/photos/14706995/pexels-photo-14706995.jpeg?auto=compress&cs=tinysrgb&w=600",
+                pastRate: 2300,
+                newRate: 2000,
+                description: "Soft pink house slippers with a furry texture.",
+                color: "Black",
+              },
+              {
+                category: "Slippers",
+                gender:'Men',
+                image: "https://images.pexels.com/photos/24645252/pexels-photo-24645252/free-photo-of-yeezy-450-slide-cream.jpeg?auto=compress&cs=tinysrgb&w=600",
+                pastRate: 3000,
+                newRate: 2500,
+                description: "Trendy cream slides with a futuristic design.",
+                color: "Yellow",
+              },
+              {
+                category: "Slippers",
+                gender:'Men',
+                image: "https://images.pexels.com/photos/12896849/pexels-photo-12896849.jpeg?auto=compress&cs=tinysrgb&w=600",
+                pastRate: 1400,
+                newRate: 1200,
+                description: "Classic black flip-flops with a sleek design.",
+                color: "Brown",
+              },
+              {
+                category: "Slippers",
+                gender:'Men',
+                image: "https://images.pexels.com/photos/13912069/pexels-photo-13912069.jpeg?auto=compress&cs=tinysrgb&w=600",
+                pastRate: 2600,
+                newRate: 2200,
+                description: "Comfortable beige flip-flops with a wide strap.",
+                color: "White",
+              },
+            
+              // Shoes
+              {
+                category: "Shoes",
+                gender:'Men',
+                image: "https://images.pexels.com/photos/15557052/pexels-photo-15557052/free-photo-of-pair-of-elegant-black-shoes-on-white-surface.jpeg?auto=compress&cs=tinysrgb&w=600",
+                pastRate: 8000,
+                newRate: 7000,
+                description: "Elegant black formal shoes for office wear.",
+                color: "Black",
+              },
+              {
+                category: "Shoes",
+                gender:'Men',
+                image: "https://images.pexels.com/photos/28387105/pexels-photo-28387105/free-photo-of-a-pair-of-brown-shoes-on-a-white-bed.jpeg?auto=compress&cs=tinysrgb&w=600",
+                pastRate: 9500,
+                newRate: 8000,
+                description: "Classic brown leather shoes with a polished finish.",
+                color: "Black",
+              },
+              {
+                category: "Shoes",
+                gender:'Men',
+                image: "https://images.pexels.com/photos/292999/pexels-photo-292999.jpeg?auto=compress&cs=tinysrgb&w=600",
+                pastRate: 7000,
+                newRate: 6000,
+                description: "Stylish black sneakers suitable for casual wear.",
+                color: "Black",
+              },
+              {
+                category: "Shoes",
+                gender:'Men',
+                image: "https://images.pexels.com/photos/10259873/pexels-photo-10259873.jpeg?auto=compress&cs=tinysrgb&w=600",
+                pastRate: 10000,
+                newRate: 8500,
+                description: "High-quality hiking boots for outdoor adventures.",
+                color: "Black",
+              },
+              {
+                category: "Shoes",
+                gender:'Men',
+                image: "https://images.pexels.com/photos/26587838/pexels-photo-26587838/free-photo-of-brown-leather-plain-toe-oxford-shoes.jpeg?auto=compress&cs=tinysrgb&w=600",
+                pastRate: 12000,
+                newRate: 10000,
+                description: "Premium brown leather oxford shoes for formal events.",
+                color: "Brown",
+              },
+              {
+                category: "Shoes",
+                gender:'Men',
+                image: "https://images.pexels.com/photos/10210779/pexels-photo-10210779.jpeg?auto=compress&cs=tinysrgb&w=600",
+                pastRate: 8500,
+                newRate: 7500,
+                description: "Casual gray sneakers with a comfortable sole.",
+                color: "Black",
+              },
+              {
+                category: "Shoes",
+                gender:'Men',
+                image: "https://images.pexels.com/photos/293404/pexels-photo-293404.jpeg?auto=compress&cs=tinysrgb&w=600",
+                pastRate: 11000,
+                newRate: 9500,
+                description: "Trendy white sneakers with a minimalist look.",
+                color: "Brown",
+              },
+              {
+                category: "Shoes",
+                gender:'Men',
+
+                image: "https://images.pexels.com/photos/6753683/pexels-photo-6753683.jpeg?auto=compress&cs=tinysrgb&w=600",
+                pastRate: 7500,
+                newRate: 6500,
+                description: "Classic blue running shoes with breathable material.",
+                color: "Brown",
+              },
+              {
+                category: "Shoes",
+                gender:'Men',
+                image: "https://images.pexels.com/photos/15059774/pexels-photo-15059774/free-photo-of-close-up-of-mens-brown-leather-shoes-standing-on-white-background.jpeg?auto=compress&cs=tinysrgb&w=600",
+                pastRate: 13000,
+                newRate: 11000,
+                description: "Luxurious brown leather shoes for special occasions.",
+                color: "Brown",
+              },
+              {
+                category: "Shoes",
+                gender:'Men',
+                image: "https://images.pexels.com/photos/27063087/pexels-photo-27063087/free-photo-of-leather-shoe-and-box-behind.jpeg?auto=compress&cs=tinysrgb&w=600",
+                pastRate: 11000,
+                newRate: 9500,
+                description: "Luxurious brown leather shoes for special occasions.",
+                color: "Black",
+              },
+             {
+                category: "Shoes",
+                gender:'Men',
+                image: "https://images.pexels.com/photos/9992899/pexels-photo-9992899.jpeg?auto=compress&cs=tinysrgb&w=600",
+                pastRate: 12500,
+                newRate: 11000,
+                description: "Luxurious brown leather shoes for special occasions.",
+                color: "Black",
+              },
+              
+                {
+                  category: "Sandals",
+                  gender: "Women",
+                  image: "https://images.pexels.com/photos/3602449/pexels-photo-3602449.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+                  pastRate: 5000,
+                  newRate: 4200,
+                  description: "Elegant white heels for special occasions.",
+                  color: "White",
+                },
+                {
+                  category: "Sandals",
+                  gender: "Women",
+                  image: "https://images.pexels.com/photos/4109883/pexels-photo-4109883.jpeg?auto=compress&cs=tinysrgb&w=600",
+                  pastRate: 6500,
+                  newRate: 5400,
+                  description: "Stylish black and white sneakers for casual outings.",
+                  color: " White",
+                },
+                {
+                  category: "Sandals",
+                  gender: "Women",
+                  image: "https://images.pexels.com/photos/28651549/pexels-photo-28651549/free-photo-of-elegant-bridal-accessories-with-white-heels.jpeg?auto=compress&cs=tinysrgb&w=600",
+                  pastRate: 12000,
+                  newRate: 9500,
+                  description: "Sophisticated white bridal heels with elegant design.",
+                  color: "White",
+                },
+                {
+                  category: "Sandals",
+                  gender: "Women",
+                  image: "https://images.pexels.com/photos/134064/pexels-photo-134064.jpeg?auto=compress&cs=tinysrgb&w=600",
+                  pastRate: 8000,
+                  newRate: 7200,
+                  description: "Classic brown leather boots for formal wear.",
+                  color: "Brown",
+                },
+                {
+                  category: "Sandals",
+                  gender: "Women",
+                  image: "https://images.pexels.com/photos/26712439/pexels-photo-26712439/free-photo-of-shining-brown-boot.jpeg?auto=compress&cs=tinysrgb&w=600",
+                  pastRate: 10000,
+                  newRate: 8500,
+                  description: "Shiny brown boots with a polished finish.",
+                  color: "Brown",
+                },
+                {
+                  category: "Sandals",
+                  gender: "Women",
+                  image: "https://images.pexels.com/photos/28651551/pexels-photo-28651551/free-photo-of-elegant-wedding-accessories-in-soft-focus.jpeg?auto=compress&cs=tinysrgb&w=600",
+                  pastRate: 11000,
+                  newRate: 9200,
+                  description: "Elegant white heels perfect for weddings.",
+                  color: "White",
+                },
+                {
+                  category: "Sandals",
+                  gender: "Women",
+                  image: "https://images.pexels.com/photos/26774382/pexels-photo-26774382/free-photo-of-botines-en-cuero.jpeg?auto=compress&cs=tinysrgb&w=600",
+                  pastRate: 9000,
+                  newRate: 7800,
+                  description: "Stylish brown leather ankle boots.",
+                  color: "Brown",
+                },
+                {
+                  category: "Sandals",
+                  gender: "Women",
+                  image: "https://images.pexels.com/photos/26856053/pexels-photo-26856053/free-photo-of-product-shot-of-high-heeled-leather-sandals.jpeg?auto=compress&cs=tinysrgb&w=600",
+                  pastRate: 7000,
+                  newRate: 6300,
+                  description: "High-heeled leather sandals for a bold look.",
+                  color: "Brown",
+                },
+                {
+                  category: "Sandals",
+                  gender: "Women",
+                  image: "https://images.pexels.com/photos/7400864/pexels-photo-7400864.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+                  pastRate: 4500,
+                  newRate: 3800,
+                  description: "Comfortable grey casual shoes for daily wear.",
+                  color: "Grey",
+                },
+                {
+                  category: "Sandals",
+                  gender: "Women",
+                  image: "https://images.pexels.com/photos/2085527/pexels-photo-2085527.jpeg?auto=compress&cs=tinysrgb&w=600",
+                  pastRate: 5500,
+                  newRate: 4700,
+                  description: "Elegant golden sandals for festive occasions.",
+                  color: "Golden",
+                },
+                {
+                  category: "Sandals",
+                  gender: "Women",
+                  image: "https://images.pexels.com/photos/2965276/pexels-photo-2965276.jpeg?auto=compress&cs=tinysrgb&w=600",
+                  pastRate: 4800,
+                  newRate: 4000,
+                  description: "Stylish black flats for a casual yet chic look.",
+                  color: "White",
+                },
+                {
+                  category: "Sandals",
+                  gender: "Women",
+                  image: "https://images.pexels.com/photos/3682292/pexels-photo-3682292.jpeg?auto=compress&cs=tinysrgb&w=600",
+                  pastRate: 7500,
+                  newRate: 6200,
+                  description: "Durable brown boots for outdoor activities.",
+                  color: "Red",
+                },
+                {
+                  category: "Sandals",
+                  gender: "Women",
+                  image: "https://images.pexels.com/photos/4886941/pexels-photo-4886941.jpeg?auto=compress&cs=tinysrgb&w=600",
+                  pastRate: 8000,
+                  newRate: 7200,
+                  description: "High-heeled black sandals with a glossy finish.",
+                  color: "Black",
+                },
+                {
+                  category: "Sandals",
+                  gender: "Women",
+                  image: "https://images.pexels.com/photos/12585652/pexels-photo-12585652.jpeg?auto=compress&cs=tinysrgb&w=600",
+                  pastRate: 9000,
+                  newRate: 7600,
+                  description: "White sneakers with a sleek design.",
+                  color: "Black",
+                },
+                {
+                  category: "Sandals",
+                  gender: "Women",
+                  image: "https://images.pexels.com/photos/28720737/pexels-photo-28720737/free-photo-of-elegant-white-bridal-shoes-with-wedding-rings.jpeg?auto=compress&cs=tinysrgb&w=600",
+                  pastRate: 15000,
+                  newRate: 13000,
+                  description: "Elegant bridal shoes with intricate detailing.",
+                  color: "White",
+                },
+                {
+                  category: "Sandals",
+                  gender: "Women",
+                  image: "https://images.pexels.com/photos/26712438/pexels-photo-26712438/free-photo-of-brown-boot-in-close-up-view.jpeg?auto=compress&cs=tinysrgb&w=600",
+                  pastRate: 10500,
+                  newRate: 9200,
+                  description: "Stylish brown boots with a rugged design.",
+                  color: "Brown",
+                },
+             
+                {
+                  category: "Slipper",
+                  gender: "Women",
+                  image: "https://images.pexels.com/photos/13912069/pexels-photo-13912069.jpeg?auto=compress&cs=tinysrgb&w=600",
+                  pastRate: 2000,
+                  newRate: 1500,
+                  description: "Stylish black slippers for casual wear.",
+                  color: "White",
+                },
+                {
+                  category: "Slipper",
+                  gender: "Women",
+                  image: "https://images.pexels.com/photos/20526391/pexels-photo-20526391/free-photo-of-white-slipper-sandals-on-beige-surface.jpeg?auto=compress&cs=tinysrgb&w=600",
+                  pastRate: 1800,
+                  newRate: 1400,
+                  description: "Elegant white slippers for daily comfort.",
+                  color: "Brown",
+                },
+                {
+                  category: "Slipper",
+                  gender: "Women",
+                  image: "https://images.pexels.com/photos/27174528/pexels-photo-27174528/free-photo-of-sandals-on-pink-background.jpeg?auto=compress&cs=tinysrgb&w=600",
+                  pastRate: 2500,
+                  newRate: 2000,
+                  description: "Bright pink slippers for a vibrant style.",
+                  color: "Brown",
+                },
+                {
+                  category: "Slipper",
+                  gender: "Women",
+                  image: "https://images.pexels.com/photos/29242132/pexels-photo-29242132/free-photo-of-colorful-embroidered-fancy-sandals-on-display.jpeg?auto=compress&cs=tinysrgb&w=600",
+                  pastRate: 3000,
+                  newRate: 2500,
+                  description: "Colorful embroidered slippers for festive occasions.",
+                  color: "Red",
+                },
+                {
+                  category: "Slipper",
+                  gender: "Women",
+                  image: "https://images.pexels.com/photos/6916290/pexels-photo-6916290.jpeg?auto=compress&cs=tinysrgb&w=600",
+                  pastRate: 2200,
+                  newRate: 1800,
+                  description: "Durable grey slippers for everyday wear.",
+                  color: "Black",
+                },
+                {
+                  category: "Slipper",
+                  gender: "Men",
+                  image: "https://images.pexels.com/photos/17740578/pexels-photo-17740578/free-photo-of-elegant-leather-sandals.jpeg?auto=compress&cs=tinysrgb&w=600",
+                  pastRate: 3200,
+                  newRate: 2800,
+                  description: "Elegant leather slippers for a classic look.",
+                  color: "Brown",
+                },
+                {
+                  category: "Slipper",
+                  gender: "Men",
+                  image: "https://images.pexels.com/photos/26925251/pexels-photo-26925251/free-photo-of-product-shot-of-leather-sandals.jpeg?auto=compress&cs=tinysrgb&w=600",
+                  pastRate: 3500,
+                  newRate: 3000,
+                  description: "Premium leather slippers for a luxurious feel.",
+                  color: "Brown",
+                },
+                {
+                  category: "Slipper",
+                  gender: "Women",
+                  image: "https://images.pexels.com/photos/17740564/pexels-photo-17740564/free-photo-of-black-sandals-and-a-string-of-pearls.jpeg?auto=compress&cs=tinysrgb&w=600",
+                  pastRate: 2800,
+                  newRate: 2400,
+                  description: "Stylish black slippers with a modern design.",
+                  color: "Red",
+                },
+                {
+                  category: "Slipper",
+                  gender: "Women",
+                  image: "https://images.pexels.com/photos/27174531/pexels-photo-27174531/free-photo-of-sandals-on-yellow-background.jpeg?auto=compress&cs=tinysrgb&w=600",
+                  pastRate: 2400,
+                  newRate: 2000,
+                  description: "Bright yellow slippers for a fun style.",
+                  color: "Black",
+                },
+                {
+                  category: "Slipper",
+                  gender: "Women",
+                  image: "https://images.pexels.com/photos/7691393/pexels-photo-7691393.jpeg?auto=compress&cs=tinysrgb&w=600",
+                  pastRate: 1500,
+                  newRate: 1200,
+                  description: "Comfortable grey slippers for daily use.",
+                  color: "Green",
+                },
+                {
+                  category: "Slipper",
+                  gender: "Women",
+                  image: "https://images.pexels.com/photos/7691385/pexels-photo-7691385.jpeg?auto=compress&cs=tinysrgb&w=600",
+                  pastRate: 1800,
+                  newRate: 1500,
+                  description: "Soft pink slippers for indoor comfort.",
+                  color: "Yellow",
+                },
+                {
+                  category: "Slipper",
+                  gender: "Women",
+                  image: "https://images.pexels.com/photos/27174551/pexels-photo-27174551/free-photo-of-photo-of-a-white-leather-shoe.jpeg?auto=compress&cs=tinysrgb&w=600",
+                  pastRate: 4000,
+                  newRate: 3500,
+                  description: "Elegant white leather slippers for a chic look.",
+                  color: "White",
+                },
+              ];
+  return (
+    <>
+   
+   <Routes>
+      <Route path='/' 
+      element={<>
+    
+      <Navbar text={text} settext={settext}/>
+         <Images/>
+         <HeroText/>
+         <Itemspage text={text} men={men} settext={settext} Love={Love} setLove={setLove} Catagory={Catagory} setCatagory={setCatagory} setSelectedItem={setSelectedItem}/>
+         <FAQ/>
+          <Footer/>
+          </>
+        }/>
+
+         <Route path='/item/:id/:category' element={<>
+         <Navbar text={text} settext={settext}/>
+         <ItemDetail selectedItem={selectedItem} />
+         <Footer/></> }/>
+         <Route path='/signin' element={<><Navbar text={text} settext={settext}/><LoginForm/><Footer/></>}/>
+         <Route path='/signup' element={<><Navbar text={text} settext={settext}/><SignupForm/> <Footer/></>}/>
+         <Route path='/item/place-order' element={<><Navbar text={text} settext={settext}/><ProtectedRout><PlaceOrder order={selectedItem}/></ProtectedRout><Footer/></>}/>
+         <Route path='/chat' element={<><Chat/></>}/>
+
+
+   </Routes>
+
+   <ToastContainer />
+    </>
+
+  )
+}
+
+export default App
