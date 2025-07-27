@@ -30,7 +30,7 @@ function Footer() {
             </div>
             <div className='hidden lg:block '  style={{
     display: isTrue ? "block" : "none",
-    display: window.innerWidth >= 1024 ? "block" : isTrue ? "block" : "none",
+    // display: window.innerWidth >= 1024 ? "block" : isTrue ? "block" : "none",
    
   }}>
                 <h3 className='capitalize font-cinzel'>sign in</h3>
@@ -51,7 +51,6 @@ function Footer() {
             </div >
             <div className='hidden lg:block' style={{
     display: isTrue1 ? "block" : "none",
-    display: window.innerWidth >= 1024 ? "block" : isTrue1 ? "block" : "none",
    
   }}>
                 <h3 className='capitalize font-cinzel'>about us</h3>
@@ -77,7 +76,6 @@ function Footer() {
             </div>
             <div className='hidden lg:block' style={{
     display: isTrue2 ? "block" : "none",
-    display: window.innerWidth >= 1024 ? "block" : isTrue2 ? "block" : "none",
    
   }}>
                 <h3 className='capitalize font-cinzel'>About your order</h3>
@@ -90,8 +88,8 @@ function Footer() {
             <div className='flex justify-between items-center'>
             <h1 className=' font-inter font-semibold text-lg md:text-2xl'>
             eShoes Contact Us
-            </h1>
-            <p onClick={()=>{setisTrue3(!isTrue3)}}>
+            </h1> 
+            <p onClick={()=>{setisTrue2(!isTrue3)}}>
                 { isTrue3 ?
             <MdKeyboardArrowUp 
             className='pr-2 cursor-pointer lg:hidden text-4xl'/> 
@@ -100,10 +98,11 @@ function Footer() {
             </div>
             <div className='hidden lg:block' style={{
     display: isTrue3 ? "block" : "none",
-    display: window.innerWidth >= 1024 ? "block" : isTrue3 ? "block" : "none",
    
   }}>
-                <h3 className='capitalize font-cinzel'>About your order</h3>
+                    <h3 className='capitalize font-cinzel'>About your order</h3>
+
+               <h3 className='capitalize font-cinzel'>About your order</h3>
                 <h3 className='capitalize font-cinzel'>1234 Elm Street 
                       California (CA)</h3>
                 <h3 className='capitalize font-cinzel'>1 (555) 123-4567</h3>
@@ -112,6 +111,8 @@ function Footer() {
 
             </div>
         </div>
+
+        
 
         
     </div></section>
